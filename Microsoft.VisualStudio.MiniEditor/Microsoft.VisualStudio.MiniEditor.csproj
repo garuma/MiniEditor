@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <DefaultItemExcludes>$(DefaultItemExcludes);vs-editor-api\**\*</DefaultItemExcludes>
+    <BaseEditorPath>vs-editor-api\src\Editor\</BaseEditorPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Text.Data" Version="16.0.467" />
+    <PackageReference Include="Microsoft.VisualStudio.Text.Logic" Version="16.0.467" />
+    <PackageReference Include="Microsoft.VisualStudio.Text.UI" Version="16.0.467" />
+    <PackageReference Include="Microsoft.VisualStudio.Language" Version="16.0.467" />
+    <PackageReference Include="Microsoft.VisualStudio.Composition" Version="16.0.12-beta" />
+  </ItemGroup>
+  <ItemGroup>
+    <VsEditorSource Include="$(BaseEditorPath)Core\Impl\ContentType\ContentTypeImpl.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Core\Impl\ContentType\ContentTypeRegistryServiceImpl.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Core\Impl\ContentType\IFileToContentTypeMetadata.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\DifferenceAlgorithm\CharacterDecompositionList.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\DifferenceAlgorithm\DefaultTextDifferencingService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\DifferenceAlgorithm\DiffChangeCollectionHelper.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\DifferenceAlgorithm\HierarchicalDifferenceCollection.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\DifferenceAlgorithm\LineDecompositionList.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\DifferenceAlgorithm\MaximalSubsequenceAlgorithm.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\DifferenceAlgorithm\SnapshotLineList.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\DifferenceAlgorithm\TextDifferencingSelectorService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\DifferenceAlgorithm\TFS\DiffFinder.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\DifferenceAlgorithm\TFS\LCSDiff.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\DifferenceAlgorithm\TokenizedStringList.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\DifferenceAlgorithm\WordDecompositionList.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\AsyncCompletionBroker.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\AsyncCompletionSession.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\CaretPreservingEditTransaction.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\CompletionAvailabilityCacheKey.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\CompletionAvailabilityUtility.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\CompletionModel.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\CompletionSourceConnectionResult.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\CompletionTelemetry.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\CompletionUtilities.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\DefaultCompletionItemManager.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\IModelComputationCallbackHandler.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\ImportBucket.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\MetadataUtilities.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\ModelComputation.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\PrioritizedTaskScheduler.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\SuggestionModeCompletionItemSource.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\TextUndoTransactionThatRollsBackProperly.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\UndoUtilities.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\UseAsyncCompletionOptionDefinition.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Util\LanguageUtil\IntellisenseSourceCache.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Util\LanguageUtil\IntellisenseUtilities.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\AllLowerCamelCaseMatcher.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\ArraySlice.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\CamelCaseResult.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\CaseInsensitiveComparison.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\ContainerPatternMatcher.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\EditDistance.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\PatternMatcher.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\PatternMatcher.PatternSegment.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\PatternMatcher.TextChunk.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\PatternMatcherFactory.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\PatternMatchExtensions.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\PatternMatchMergeStrategy.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\SimplePatternMatcher.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\StringBreaker.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\StringBreaks.EncodedSpans.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\Utilities.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\WordSimilarityChecker.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextData\INonJoinableTaskTrackerInternal.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\ArgumentValidation.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\BufferTracker.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\DifferenceCollection.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\ExtensionSelector.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\FrugalList.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\GuardedOperations.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\IEncodingDetectorMetadata.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\IOrderableContentTypeMetadata.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\ListUtilities.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\MappingHelper.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\MappingPointSnapshot.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\MappingSpanSnapshot.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\PooledObjects\ArrayBuilder.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\PooledObjects\ArrayBuilder.Enumerator.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\PooledObjects\ObjectPool`1.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\PooledObjects\PooledDictionary.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\PooledObjects\PooledHashSet.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\PooledObjects\PooledStringBuilder.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\ProjectionSpanDiffer.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\SnapshotTracker.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\StableContentTypeComparer.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\StableOrderer.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\StableTopologicalSort.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\TextModelOptions.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\TextUtilities.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\WeakReferenceForKey.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\BaseBuffer.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\BaseSnapshot.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\BufferFactoryService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\BufferGroup.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\CachingTextImage.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\EncodedStreamReader.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\ExtendedCharacterDetectionDecoder.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\ExtendedCharacterDetector.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\FallbackDetector.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\FileNameKey.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\FileUtilities.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\ForwardFidelityCustomTrackingSpan.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\ForwardFidelityTrackingPoint.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\ForwardFidelityTrackingSpan.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\HighFidelityTrackingPoint.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\HighFidelityTrackingSpan.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\IInternalTextBufferFactory.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\ISubordinateTextEdit.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\LineBreakBoundaryConditions.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\MappingPoint.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\MappingSpan.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\NativeMethods.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\NormalizedTextChangeCollection.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\PersistentSpan.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\PersistentSpanFactory.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\PersistentSpanSet.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Projection\BaseProjectionBuffer.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Projection\BaseProjectionSnapshot.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Projection\BufferGraph.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Projection\BufferGraphFactoryService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Projection\ElisionBuffer.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Projection\ElisionMap.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Projection\ElisionMapNode.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Projection\ElisionSnapshot.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Projection\ProjectionBuffer.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Projection\ProjectionSnapshot.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Projection\ProjectionSpanToChangeConverter.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Projection\ProjectionUtilities.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Projection\WeakEventHook.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\ReadOnlyRegion.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\ReadOnlySpan.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\ReadOnlySpanCollection.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Storage\CharStream.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Storage\Compressor.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Storage\ILineBreaks.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Storage\LineBreakManager.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Storage\Page.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Storage\PageManager.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\Storage\TextImageLoader.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\StringRebuilder\BinaryStringRebuilder.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\StringRebuilder\StringRebuilder.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\StringRebuilder\StringRebuilderForChars.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\StringRebuilder\StringRebuilderForCompressedChars.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\StringRebuilder\StringRebuilderForString.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\StringRebuilder\UnaryStringRebuilder.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\TextBuffer.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\TextChange.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\TextImageVersion.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\TextModelUtilities.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\TextSnapshot.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\TextSnapshotLine.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\TextVersion.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\TrackingPoint.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\TrackingSpan.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\TrivialNormalizedTextChangeCollection.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\VersionNumberPosition.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\IContentTypeAndTextViewRoleMetadata.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\IOrderableContentTypeAndOptionalTextViewRoleMetadata.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\IOrderableContentTypeAndTextViewRoleMetadata.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\ITextViewRoleMetadata.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\ILoggingServiceInternal.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\IExperimentationServiceInternal.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextData\ITextImageFactoryService2.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextData\ITextBufferFactoryService2.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\TelemetrySeverity.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\TelemetryResult.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\TelemetryEventType.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorOptions\EditorOptions.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorOptions\EditorOptionsFactoryService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorOptions\TextModelEditorOptions.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorOptions\TextModelOptionsSetter.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\IEditorOptionsFactoryService2.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\ITextModelOptionsSetter.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\ClassificationAggregator\ClassifierAggregator.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\ClassificationAggregator\ClassifierAggregatorService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\ClassificationAggregator\ProjectionWorkaround.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\ClassificationAggregator\ClassifierTagger.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\ClassificationAggregator\ClassifierTaggerProvider.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\ClassificationType\ClassificationTypeImpl.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\ClassificationType\ClassificationTypeRegistryService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TagAggregator\IViewTaggerMetadata.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TagAggregator\TagAggregator.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TagAggregator\TagAggregatorFactoryService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextLogicUtil\INamedTaggerMetadata.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextLogicUtil\ITaggerMetadata.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextData\JoinableTaskHelper.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\TagAggregatorOptions2.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="@(VsEditorSource)" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(BaseEditorPath)Core\Impl\ContentType\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <ManifestResourceName>Microsoft.VisualStudio.CoreUtilityImplementation.ContentType.Strings</ManifestResourceName>
+      <LastGenOutput>$(BaseEditorPath)Core\Impl\ContentType\Strings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Microsoft.VisualStudio.Utilities.Implementation</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(BaseEditorPath)Text\Impl\TextModel\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <ManifestResourceName>Microsoft.VisualStudio.Text.Implementation.Strings</ManifestResourceName>
+      <LastGenOutput>$(BaseEditorPath)Text\Impl\TextModel\Strings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Microsoft.VisualStudio.Text.Implementation</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(BaseEditorPath)Language\Impl\Language\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <ManifestResourceName>Microsoft.VisualStudio.Language.Intellisense.Implementation.Strings</ManifestResourceName>
+      <LastGenOutput>$(BaseEditorPath)Language\Impl\Language\Strings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Microsoft.VisualStudio.Language.Intellisense.Implementation</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(BaseEditorPath)Text\Impl\ClassificationType\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <ManifestResourceName>Microsoft.VisualStudio.Text.Classification.Implementation.LookUp.Strings</ManifestResourceName>
+      <LastGenOutput>$(BaseEditorPath)Text\Impl\ClassificationType\Strings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Microsoft.VisualStudio.Text.Classification.Implementation.LookUp</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(BaseEditorPath)Core\Impl\ContentType\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>$(BaseEditorPath)Core\Impl\ContentType\Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="$(BaseEditorPath)Language\Impl\Language\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>$(BaseEditorPath)Language\Impl\Language\Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="$(BaseEditorPath)Text\Impl\TextModel\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>$(BaseEditorPath)Text\Impl\TextModel\Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="$(BaseEditorPath)Text\Impl\ClassificationType\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>$(BaseEditorPath)Text\Impl\ClassificationType\Strings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

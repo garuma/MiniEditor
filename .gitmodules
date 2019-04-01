@@ -1,0 +1,3 @@
+[submodule "Microsoft.VisualStudio.MiniEditor/vs-editor-api"]
+	path = Microsoft.VisualStudio.MiniEditor/vs-editor-api
+	url = https://github.com/KirillOsenkov/vs-editor-api.git

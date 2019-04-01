@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.VisualStudio.MiniEditor", "Microsoft.VisualStudio.MiniEditor\Microsoft.VisualStudio.MiniEditor.csproj", "{DD2087D3-ED47-49E8-AF08-CD3B3867C84D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD2087D3-ED47-49E8-AF08-CD3B3867C84D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD2087D3-ED47-49E8-AF08-CD3B3867C84D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD2087D3-ED47-49E8-AF08-CD3B3867C84D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD2087D3-ED47-49E8-AF08-CD3B3867C84D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
