@@ -5,6 +5,10 @@
     <LangVersion>latest</LangVersion>
     <DefaultItemExcludes>$(DefaultItemExcludes);vs-editor-api\**\*</DefaultItemExcludes>
     <BaseEditorPath>vs-editor-api\src\Editor\</BaseEditorPath>
+    <SignAssembly>true</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <PublicSign>true</PublicSign>
+    <AssemblyOriginatorKeyFile>..\public.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
