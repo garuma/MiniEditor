@@ -6,6 +6,17 @@
     <DefaultItemExcludes>$(DefaultItemExcludes);vs-editor-api\**\*</DefaultItemExcludes>
     <BaseEditorPath>vs-editor-api\src\Editor\</BaseEditorPath>
   </PropertyGroup>
+  <PropertyGroup>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>Neteril.VisualStudio.MiniEditor</PackageId>
+    <Authors>garuma</Authors>
+    <Summary>Composable subset of the VS-Editor platform that's UI-agnostic to allow cross-platform unit-testing scenarios</Summary>
+    <Description>Composable subset of the VS-Editor platform that's UI-agnostic to allow cross-platform unit-testing scenarios</Description>
+    <PackageProjectUrl>https://github.com/garuma/MiniEditor</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/garuma/MiniEditor</RepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
@@ -15,6 +26,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Text.UI" Version="16.0.467" />
     <PackageReference Include="Microsoft.VisualStudio.Language" Version="16.0.467" />
     <PackageReference Include="Microsoft.VisualStudio.Composition" Version="16.0.12-beta" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="2.3.138" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
     <VsEditorSource Include="$(BaseEditorPath)Core\Impl\ContentType\ContentTypeImpl.cs" />
