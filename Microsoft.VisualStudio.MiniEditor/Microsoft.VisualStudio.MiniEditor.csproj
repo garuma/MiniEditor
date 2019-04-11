@@ -20,6 +20,8 @@
     <RepositoryUrl>https://github.com/garuma/MiniEditor</RepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>Microsoft Corporation</Copyright>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
