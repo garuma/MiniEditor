@@ -1,5 +1,7 @@
 # MiniEditor
 
+<a href="https://www.nuget.org/packages/Neteril.VisualStudio.MiniEditor"><img src="https://img.shields.io/nuget/v/Neteril.VisualStudio.MiniEditor.svg" alt="NuGet" /></a>
+
 Composable subset of the [Visual Studio Editor platform](https://docs.microsoft.com/en-us/visualstudio/extensibility/inside-the-editor) that's UI-agnostic to allow cross-platform unit-testing scenarios
 
 ## Motivation
