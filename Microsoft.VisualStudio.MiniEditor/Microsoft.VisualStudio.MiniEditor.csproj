@@ -27,12 +27,11 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Text.Data" Version="16.0.467" />
-    <PackageReference Include="Microsoft.VisualStudio.Text.Logic" Version="16.0.467" />
-    <PackageReference Include="Microsoft.VisualStudio.Text.UI" Version="16.0.467" />
-    <PackageReference Include="Microsoft.VisualStudio.Language" Version="16.0.467" />
-    <PackageReference Include="Microsoft.VisualStudio.Composition" Version="16.0.12-beta" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="2.3.138" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VisualStudio.Text.Data" Version="16.1.89" />
+    <PackageReference Include="Microsoft.VisualStudio.Text.Logic" Version="16.1.89" />
+    <PackageReference Include="Microsoft.VisualStudio.Text.UI" Version="16.1.89" />
+    <PackageReference Include="Microsoft.VisualStudio.Language" Version="16.1.89" />
+    <PackageReference Include="Microsoft.VisualStudio.Composition" Version="16.1.8" />
   </ItemGroup>
   <ItemGroup>
     <VsEditorSource Include="$(BaseEditorPath)Core\Impl\ContentType\ContentTypeImpl.cs" />
