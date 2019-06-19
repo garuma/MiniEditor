@@ -69,6 +69,19 @@
     <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\TextUndoTransactionThatRollsBackProperly.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\UndoUtilities.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\UseAsyncCompletionOptionDefinition.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\QuickInfo\AsyncQuickInfoBroker.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\QuickInfo\AsyncQuickInfoSession.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\QuickInfo\AsyncQuickInfoSession.Legacy.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Impl\Language\QuickInfo\AsyncQuickInfoPresentationSession.cs" />
+    <!-- these legacy interfaces are not in the defs we reference but are needed to get the impl to compile -->
+    <VsEditorSource Include="$(BaseEditorPath)Language\Def\Language\QuickInfo\Legacy\ILegacyQuickInfoBrokerSupport.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Def\Language\QuickInfo\Legacy\ILegacyQuickInfoMetadata.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Def\Language\QuickInfo\Legacy\ILegacyQuickInfoSourcesSupport.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Def\Language\QuickInfo\Legacy\ILegacyQuickInfoRecalculateSupport.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Language\Def\Language\QuickInfo\Legacy\ILegacyQuickInfoSource.cs" />
+    <!-- these updated interfaces are not yet available in the defs we reference but are needed to get the impl to compile -->
+    <VsEditorSource Include="$(BaseEditorPath)Language\Def\Language\QuickInfo\IAsyncQuickInfoSession2.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\TextUI\Adornments\ToolTipService\IToolTipPresenter2.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Language\Util\LanguageUtil\IntellisenseSourceCache.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Language\Util\LanguageUtil\IntellisenseUtilities.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\PatternMatching\AllLowerCamelCaseMatcher.cs" />
