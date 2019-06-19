@@ -1,0 +1,48 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  name: Hosted VS2017
+  demands:
+  - msbuild
+  - visualstudio
+
+steps:
+- task: NuGetToolInstaller@1
+  displayName: 'Use NuGet '
+
+- task: VSBuild@1
+  displayName: 'Build solution Microsoft.VisualStudio.MiniEditor.sln'
+  inputs:
+    solution: Microsoft.VisualStudio.MiniEditor.sln
+    msbuildArgs: /restore
+    configuration: Release
+
+- task: CopyFiles@2
+  displayName: 'Copy NuGets'
+  inputs:
+    SourceFolder: Microsoft.VisualStudio.MiniEditor/bin/Release
+    Contents: |
+     **/*.nupkg
+     **/*.snupkg
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet push'
+  inputs:
+    command: push
+    publishVstsFeed: '6f96278a-705c-4bdc-8ea7-5e61d0ae3a85'
+    allowPackageConflicts: true
+  continueOnError: true
+  condition: and(succeeded(), ne(variables['system.pullrequest.isfork'], true))
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    ArtifactName: nugets
+
