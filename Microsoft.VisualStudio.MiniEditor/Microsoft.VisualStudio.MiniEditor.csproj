@@ -9,6 +9,7 @@
     <DelaySign>false</DelaySign>
     <PublicSign>true</PublicSign>
     <AssemblyOriginatorKeyFile>..\public.snk</AssemblyOriginatorKeyFile>
+    <VSEditorNugetVersion>16.1.89</VSEditorNugetVersion>
   </PropertyGroup>
   <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -27,10 +28,10 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Text.Data" Version="16.1.89" />
-    <PackageReference Include="Microsoft.VisualStudio.Text.Logic" Version="16.1.89" />
-    <PackageReference Include="Microsoft.VisualStudio.Text.UI" Version="16.1.89" />
-    <PackageReference Include="Microsoft.VisualStudio.Language" Version="16.1.89" />
+    <PackageReference Include="Microsoft.VisualStudio.Text.Data" Version="$(VSEditorNugetVersion)" />
+    <PackageReference Include="Microsoft.VisualStudio.Text.Logic" Version="$(VSEditorNugetVersion)" />
+    <PackageReference Include="Microsoft.VisualStudio.Text.UI" Version="$(VSEditorNugetVersion)" />
+    <PackageReference Include="Microsoft.VisualStudio.Language" Version="$(VSEditorNugetVersion)" />
     <PackageReference Include="Microsoft.VisualStudio.Composition" Version="16.1.8" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="2.3.38" PrivateAssets="all" />
   </ItemGroup>
@@ -225,6 +226,30 @@
     <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextLogicUtil\ITaggerMetadata.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextData\JoinableTaskHelper.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\TagAggregatorOptions2.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\TextUI\Utilities\IStatusBarService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\StatusBarService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\DefaultStatusBarService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\UIThreadOperationExecutor.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\DefaultUIThreadOperationExecutor.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\BaseProxyService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\ITypingTelemetrySession.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\Commanding\CommandHandlerBucket.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\Commanding\DefaultBufferResolver.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\Commanding\EditorCommandHandlerServiceFactory.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\Commanding\EditorCommandHandlerServiceState.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\Commanding\ICommandHandlerMetadata.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\Commanding\SingleBufferResolver.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\ITextUndoHistory2.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\StandaloneUndo\AutoEnclose.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\StandaloneUndo\CatchOperationsFromHistoryForDelegatedPrimitive.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\StandaloneUndo\DelegatedUndoPrimitiveImpl.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\StandaloneUndo\DelegatedUndoPrimitiveState.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\StandaloneUndo\NullMergeUndoTransactionPolicy.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\StandaloneUndo\UndoableOperationCurried.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\StandaloneUndo\UndoHistoryImpl.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\StandaloneUndo\UndoHistoryRegistryImpl.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\StandaloneUndo\UndoTransactionImpl.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\StandaloneUndo\WeakReferenceForDictionaryKey.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="@(VsEditorSource)" />
@@ -254,6 +279,12 @@
       <LastGenOutput>$(BaseEditorPath)Text\Impl\ClassificationType\Strings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Microsoft.VisualStudio.Text.Classification.Implementation.LookUp</CustomToolNamespace>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(BaseEditorPath)Text\Impl\Commanding\CommandingStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <ManifestResourceName>Microsoft.VisualStudio.UI.Text.Commanding.Implementation.CommandingStrings</ManifestResourceName>
+      <LastGenOutput>$(BaseEditorPath)Text\Impl\Commanding\CommandingStrings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Microsoft.VisualStudio.UI.Text.Commanding.Implementation</CustomToolNamespace>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(BaseEditorPath)Core\Impl\ContentType\Strings.Designer.cs">
@@ -275,6 +306,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>$(BaseEditorPath)Text\Impl\ClassificationType\Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="$(BaseEditorPath)Text\Impl\Commanding\CommandingStrings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>$(BaseEditorPath)Text\Impl\Commanding\CommandingStrings.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

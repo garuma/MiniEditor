@@ -31,6 +31,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 		{
 			_textBuffer = textBuffer;
 			this.bufferGraphFactory = bufferGraphFactory;
+			Selection = new MockTextSelection(this);
 		}
 		#endregion
 
@@ -85,7 +86,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 
 		public ITextViewLineCollection TextViewLines => throw new NotImplementedException ();
 
-		public ITextSelection Selection => throw new NotImplementedException ();
+		public ITextSelection Selection { get; }
 
 		public int TabSize {
 			get {
