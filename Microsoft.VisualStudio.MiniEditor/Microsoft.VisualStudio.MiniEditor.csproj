@@ -129,6 +129,8 @@
     <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\TextModelOptions.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\TextUtilities.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextDataUtil\WeakReferenceForKey.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\UIExtensionSelector.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\IDeferrableContentTypeAndTextViewRoleMetadata.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\BaseBuffer.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\BaseSnapshot.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\BufferFactoryService.cs" />

@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.Text.Editor.Implementation;
 using Microsoft.VisualStudio.Text.Formatting;
 using Microsoft.VisualStudio.Text.Projection;
 using Microsoft.VisualStudio.Utilities;
+using Microsoft.VisualStudio.Text.Utilities;
 
 namespace Microsoft.VisualStudio.Text.Editor.Implementation
 {
@@ -22,16 +23,22 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 
 		private ITextBuffer _textBuffer;
 
-		readonly IBufferGraphFactoryService bufferGraphFactory;
+		readonly TextViewFactoryService _factoryService;
 
 		#endregion
 
 		#region Construction
-		public TestTextView (ITextBuffer textBuffer, IBufferGraphFactoryService bufferGraphFactory)
+		public TestTextView (ITextBuffer textBuffer, TextViewFactoryService factoryService)
 		{
 			_textBuffer = textBuffer;
-			this.bufferGraphFactory = bufferGraphFactory;
+			_factoryService = factoryService;
 			Selection = new MockTextSelection(this);
+
+			var listeners = UIExtensionSelector.SelectMatchingExtensions (
+				_factoryService.TextViewCreationListeners, _textBuffer.ContentType, null, Roles);
+			foreach (var listener in listeners) {
+				listener.Value.TextViewCreated (this);
+			}
 		}
 		#endregion
 
@@ -116,7 +123,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 
 		public ITextDataModel TextDataModel => throw new NotImplementedException ();
 
-		public IBufferGraph BufferGraph => bufferGraphFactory.CreateBufferGraph (_textBuffer);
+		public IBufferGraph BufferGraph => _factoryService.BufferGraphFactoryService.CreateBufferGraph (_textBuffer);
 
 		public IViewScroller ViewScroller => throw new NotImplementedException ();
 

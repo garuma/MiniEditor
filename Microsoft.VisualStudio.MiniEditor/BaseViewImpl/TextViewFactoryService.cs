@@ -1,5 +1,8 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Text.Projection;
+using Microsoft.VisualStudio.Text.Utilities;
 
 namespace Microsoft.VisualStudio.Text.Editor.Implementation
 {
@@ -12,8 +15,11 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 		[Import]
 		public IBufferGraphFactoryService BufferGraphFactoryService { get; set; }
 
+		[ImportMany]
+		public List<Lazy<ITextViewCreationListener, IDeferrableContentTypeAndTextViewRoleMetadata>> TextViewCreationListeners { get; set; }
+
 		public ITextView CreateTextView (ITextBuffer buffer)
-			=> new TestTextView (buffer, BufferGraphFactoryService);
+			=> new TestTextView (buffer, this);
 
 		public ITextView CreateTextView () => CreateTextView (BufferFactoryService.CreateTextBuffer ());
 	}
