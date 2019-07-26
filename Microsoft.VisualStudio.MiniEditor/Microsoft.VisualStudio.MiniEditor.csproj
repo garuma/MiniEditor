@@ -33,7 +33,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Text.UI" Version="$(VSEditorNugetVersion)" />
     <PackageReference Include="Microsoft.VisualStudio.Language" Version="$(VSEditorNugetVersion)" />
     <PackageReference Include="Microsoft.VisualStudio.Composition" Version="16.1.8" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="2.3.38" PrivateAssets="all" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="2.2.33" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
     <VsEditorSource Include="$(BaseEditorPath)Core\Impl\ContentType\ContentTypeImpl.cs" />
