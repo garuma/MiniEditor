@@ -142,6 +142,23 @@
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorOperations\TextTransactionMergePolicy.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorOperations\BeforeTextBufferChangeUndoPrimitive.cs " />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorOperations\AfterTextBufferChangeUndoPrimitive.cs " />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\BufferPrimitives.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\DefaultBufferPrimitive.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\DefaultBufferPrimitivesFactoryService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\DefaultCaretPrimitive.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\DefaultDisplayTextPointPrimitive.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\DefaultDisplayTextRangePrimitive.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\DefaultSelectionPrimitive.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\DefaultTextPointPrimitive.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\DefaultTextRangePrimitive.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\DefaultTextViewPrimitive.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\DefaultViewPrimitivesFactoryService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\EditorPrimitivesFactoryService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\PrimitivesUtilities.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\ViewPrimitives.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\Outlining\Collapsible.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\Outlining\OutliningManager.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\Outlining\OutliningManagerService.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\BaseBuffer.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\BaseSnapshot.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\BufferFactoryService.cs" />
@@ -216,6 +233,7 @@
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\IExperimentationServiceInternal.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextData\ITextImageFactoryService2.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextData\ITextBufferFactoryService2.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextData\TrackingSpanTree.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\TelemetrySeverity.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\TelemetryResult.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\TelemetryEventType.cs" />
@@ -316,6 +334,12 @@
       <LastGenOutput>vs-editor-api\src\Editor\Text\Impl\EditorOperations\Strings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Microsoft.VisualStudio.Text.Operations.Implementation</CustomToolNamespace>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <ManifestResourceName>Microsoft.VisualStudio.Text.EditorPrimitives.Implementation.Strings</ManifestResourceName>
+      <LastGenOutput>vs-editor-api\src\Editor\Text\Impl\EditorPrimitives\Strings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Microsoft.VisualStudio.Text.EditorPrimitives.Implementation</CustomToolNamespace>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(BaseEditorPath)Core\Impl\ContentType\Strings.Designer.cs">
@@ -347,6 +371,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>vs-editor-api\src\Editor\Text\Impl\EditorOperations\Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>vs-editor-api\src\Editor\Text\Impl\EditorPrimitives\Strings.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>
