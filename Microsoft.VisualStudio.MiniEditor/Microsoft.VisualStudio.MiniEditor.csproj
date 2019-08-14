@@ -225,12 +225,16 @@
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\TrackingSpan.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\TrivialNormalizedTextChangeCollection.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextModel\VersionNumberPosition.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextSearch\TextSearchNavigator.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextSearch\TextSearchNavigatorFactoryService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextSearch\TextSearchService.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\IContentTypeAndTextViewRoleMetadata.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\IOrderableContentTypeAndOptionalTextViewRoleMetadata.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\IOrderableContentTypeAndTextViewRoleMetadata.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\ITextViewRoleMetadata.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\ILoggingServiceInternal.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\IExperimentationServiceInternal.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\ITextSearchNavigator2.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextData\ITextImageFactoryService2.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextData\ITextBufferFactoryService2.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextData\TrackingSpanTree.cs" />
@@ -257,6 +261,7 @@
     <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextLogicUtil\ITaggerMetadata.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextLogicUtil\TextUndoPrimitive.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextData\JoinableTaskHelper.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextData\UnicodeWordExtent.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\TagAggregatorOptions2.cs" />
     <!-- public but not available in public asms yet -->
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextUI\*.cs" />
