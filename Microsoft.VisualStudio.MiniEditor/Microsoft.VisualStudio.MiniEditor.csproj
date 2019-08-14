@@ -247,6 +247,7 @@
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\EditorOptions\TextModelOptionsSetter.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\IEditorOptionsFactoryService2.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\ITextModelOptionsSetter.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\IEditOnlyTextUndoPrimitive.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\ClassificationAggregator\ClassifierAggregator.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\ClassificationAggregator\ClassifierAggregatorService.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\ClassificationAggregator\ProjectionWorkaround.cs" />
@@ -257,6 +258,11 @@
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TagAggregator\IViewTaggerMetadata.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TagAggregator\TagAggregator.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TagAggregator\TagAggregatorFactoryService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\Navigation\DefaultTextNavigator.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\Navigation\TextStructureNavigatorSelectorService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextBufferUndoManager\TextBufferChangeUndoPrimitive.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextBufferUndoManager\TextBufferUndoManager.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\TextBufferUndoManager\TextBufferUndoManagerProvider.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextLogicUtil\INamedTaggerMetadata.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextLogicUtil\ITaggerMetadata.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextLogicUtil\TextUndoPrimitive.cs" />
@@ -275,6 +281,7 @@
     <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\UIThreadOperationExecutor.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\DefaultUIThreadOperationExecutor.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\BaseProxyService.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Util\TextUIUtil\ExtensionMethods.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\ITypingTelemetrySession.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\Commanding\CommandHandlerBucket.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\Commanding\DefaultBufferResolver.cs" />
@@ -293,6 +300,12 @@
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\StandaloneUndo\UndoHistoryRegistryImpl.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\StandaloneUndo\UndoTransactionImpl.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Impl\StandaloneUndo\WeakReferenceForDictionaryKey.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\XPlat\MultiCaretImpl\DelegateDisposable.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\XPlat\MultiCaretImpl\MultiSelectionBroker.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\XPlat\MultiCaretImpl\MultiSelectionBrokerFactory.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\XPlat\MultiCaretImpl\MultiSelectionCommandHandler.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\XPlat\MultiCaretImpl\SelectionTransformer.cs" />
+    <VsEditorSource Include="$(BaseEditorPath)Text\Impl\XPlat\MultiCaretImpl\SelectionUIProperties.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\Language\IWaitIndicator.cs" />
     <VsEditorSource Include="$(BaseEditorPath)Text\Def\Internal\Language\IWaitContext.cs" />
     <VsEditorSource Include="$(BaseEditorPath)..\FPF\PresentationCore\System.Windows.DataObject.cs" />
@@ -345,6 +358,18 @@
       <LastGenOutput>vs-editor-api\src\Editor\Text\Impl\EditorPrimitives\Strings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Microsoft.VisualStudio.Text.EditorPrimitives.Implementation</CustomToolNamespace>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(BaseEditorPath)Text\Impl\TextBufferUndoManager\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <ManifestResourceName>Microsoft.VisualStudio.Text.TextBufferUndoManager.Implementation.Strings</ManifestResourceName>
+      <LastGenOutput>vs-editor-api\src\Editor\Text\Impl\TextBufferUndoManager\Strings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Microsoft.VisualStudio.Text.BufferUndoManager.Implementation</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(BaseEditorPath)Text\Impl\XPlat\MultiCaretImpl\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <ManifestResourceName>Microsoft.VisualStudio.Text.MultiSelection.Implementation.Strings</ManifestResourceName>
+      <LastGenOutput>vs-editor-api\src\Editor\Text\Impl\XPlat\MultiCaretImpl\Strings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Microsoft.VisualStudio.Text.MultiSelection.Implementation</CustomToolNamespace>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(BaseEditorPath)Core\Impl\ContentType\Strings.Designer.cs">
@@ -381,6 +406,16 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>vs-editor-api\src\Editor\Text\Impl\EditorPrimitives\Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="$(BaseEditorPath)Text\Impl\TextBufferUndoManager\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>vs-editor-api\src\Editor\Text\Impl\TextBufferUndoManager\Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="$(BaseEditorPath)Text\Impl\XPlat\MultiCaretImpl\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>vs-editor-api\src\Editor\Text\Impl\XPlat\MultiCaretImpl\Strings.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

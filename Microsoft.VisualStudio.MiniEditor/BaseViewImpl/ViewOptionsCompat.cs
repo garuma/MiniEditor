@@ -16,19 +16,6 @@ namespace Microsoft.VisualStudio.Text.Editor.OptionsExtensionMethods
 		#region Extension methods
 
 		/// <summary>
-		/// Determines whether virtual space is enabled for the specified set of editor options.
-		/// </summary>
-		/// <param name="options">The set of editor options.</param>
-		/// <returns><c>true</c> if virtual space is enabled, otherwise <c>false</c>.</returns>
-		public static bool IsVirtualSpaceEnabled (this IEditorOptions options)
-		{
-			if (options == null)
-				throw new ArgumentNullException (nameof (options));
-
-			return options.GetOptionValue<bool> (DefaultTextViewOptions.UseVirtualSpaceId);
-		}
-
-		/// <summary>
 		/// Determines whether auto-scroll is enabled with the specified set of editor options.
 		/// </summary>
 		/// <param name="options">The set of editor options.</param>
