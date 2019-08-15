@@ -308,6 +308,8 @@
     <Compile Include="$(BaseEditorPath)Text\Util\TextUIUtil\StatusBarService.cs" />
     <Compile Include="$(BaseEditorPath)Text\Util\TextUIUtil\UIExtensionSelector.cs" />
     <Compile Include="$(BaseEditorPath)Text\Util\TextUIUtil\UIThreadOperationExecutor.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Util\TextUIUtil\VacuousTextViewModel.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Util\TextUIUtil\VacuousTextDataModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(BaseEditorPath)Core\Impl\ContentType\Strings.resx">
