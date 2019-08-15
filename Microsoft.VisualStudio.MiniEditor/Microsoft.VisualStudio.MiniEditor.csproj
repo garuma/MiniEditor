@@ -312,55 +312,55 @@
   <ItemGroup>
     <EmbeddedResource Include="$(BaseEditorPath)Core\Impl\ContentType\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <ManifestResourceName>Microsoft.VisualStudio.CoreUtilityImplementation.ContentType.Strings</ManifestResourceName>
+      <LogicalName>Microsoft.VisualStudio.CoreUtilityImplementation.ContentType.Strings.resources</LogicalName>
       <LastGenOutput>vs-editor-api\src\Editor\Core\Impl\ContentType\Strings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Microsoft.VisualStudio.Utilities.Implementation</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="$(BaseEditorPath)Text\Impl\TextModel\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <ManifestResourceName>Microsoft.VisualStudio.Text.Implementation.Strings</ManifestResourceName>
+      <LogicalName>Microsoft.VisualStudio.Text.Implementation.Strings.resources</LogicalName>
       <LastGenOutput>vs-editor-api\src\Editor\Text\Impl\TextModel\Strings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Microsoft.VisualStudio.Text.Implementation</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="$(BaseEditorPath)Language\Impl\Language\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <ManifestResourceName>Microsoft.VisualStudio.Language.Intellisense.Implementation.Strings</ManifestResourceName>
+      <LogicalName>Microsoft.VisualStudio.Language.Intellisense.Implementation.Strings.resources</LogicalName>
       <LastGenOutput>vs-editor-api\src\Editor\Language\Impl\Language\Strings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Microsoft.VisualStudio.Language.Intellisense.Implementation</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="$(BaseEditorPath)Text\Impl\ClassificationType\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <ManifestResourceName>Microsoft.VisualStudio.Text.Classification.Implementation.LookUp.Strings</ManifestResourceName>
+      <LogicalName>Microsoft.VisualStudio.Text.Classification.Implementation.LookUp.Strings.resources</LogicalName>
       <LastGenOutput>vs-editor-api\src\Editor\Text\Impl\ClassificationType\Strings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Microsoft.VisualStudio.Text.Classification.Implementation.LookUp</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="$(BaseEditorPath)Text\Impl\Commanding\CommandingStrings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <ManifestResourceName>Microsoft.VisualStudio.UI.Text.Commanding.Implementation.CommandingStrings</ManifestResourceName>
+      <LogicalName>Microsoft.VisualStudio.UI.Text.Commanding.Implementation.CommandingStrings.resources</LogicalName>
       <LastGenOutput>vs-editor-api\src\Editor\Text\Impl\Commanding\CommandingStrings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Microsoft.VisualStudio.UI.Text.Commanding.Implementation</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="$(BaseEditorPath)Text\Impl\EditorOperations\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <ManifestResourceName>Microsoft.VisualStudio.Text.Operations.Implementation.Strings</ManifestResourceName>
+      <LogicalName>Microsoft.VisualStudio.UI.Text.EditorOperations.Implementation.Strings.resources</LogicalName>
       <LastGenOutput>vs-editor-api\src\Editor\Text\Impl\EditorOperations\Strings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Microsoft.VisualStudio.Text.Operations.Implementation</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="$(BaseEditorPath)Text\Impl\EditorPrimitives\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <ManifestResourceName>Microsoft.VisualStudio.Text.EditorPrimitives.Implementation.Strings</ManifestResourceName>
+      <LogicalName>Microsoft.VisualStudio.UI.Text.EditorPrimitives.Implementation.Strings.resources</LogicalName>
       <LastGenOutput>vs-editor-api\src\Editor\Text\Impl\EditorPrimitives\Strings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Microsoft.VisualStudio.Text.EditorPrimitives.Implementation</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="$(BaseEditorPath)Text\Impl\TextBufferUndoManager\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <ManifestResourceName>Microsoft.VisualStudio.Text.TextBufferUndoManager.Implementation.Strings</ManifestResourceName>
+      <LogicalName>Microsoft.VisualStudio.Logic.Text.BufferUndoManager.Implementation.Strings.resources</LogicalName>
       <LastGenOutput>vs-editor-api\src\Editor\Text\Impl\TextBufferUndoManager\Strings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Microsoft.VisualStudio.Text.BufferUndoManager.Implementation</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="$(BaseEditorPath)Text\Impl\XPlat\MultiCaretImpl\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <ManifestResourceName>Microsoft.VisualStudio.Text.MultiSelection.Implementation.Strings</ManifestResourceName>
+      <LogicalName>Microsoft.VisualStudio.Text.MultiSelection.Implementation.Strings.resources</LogicalName>
       <LastGenOutput>vs-editor-api\src\Editor\Text\Impl\XPlat\MultiCaretImpl\Strings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Microsoft.VisualStudio.Text.MultiSelection.Implementation</CustomToolNamespace>
     </EmbeddedResource>
