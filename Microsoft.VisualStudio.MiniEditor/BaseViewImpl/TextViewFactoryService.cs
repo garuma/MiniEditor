@@ -18,6 +18,9 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 		[Import]
 		public IMultiSelectionBrokerFactory MultiSelectionBrokerFactory { get; set; }
 
+		[Import]
+		public ISmartIndentationService SmartIndentationService { get; set; }
+
 		[ImportMany]
 		public List<Lazy<ITextViewCreationListener, IDeferrableContentTypeAndTextViewRoleMetadata>> TextViewCreationListeners { get; set; }
 

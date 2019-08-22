@@ -1,99 +1,93 @@
 using System;
-using Microsoft.VisualStudio.Text;
-using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Formatting;
+using Microsoft.VisualStudio.Text.MultiSelection;
 
 namespace Microsoft.VisualStudio.Text.Editor.Implementation
 {
 	internal class MockTextCaret : ITextCaret
 	{
-		private ITextView textView;
+		readonly ITextView textView;
+		readonly ISmartIndentationService indentService;
+		readonly IMultiSelectionBroker multiSelectionBroker;
 
-		public MockTextCaret (ITextView textView)
+		public MockTextCaret (ITextView textView, ISmartIndentationService indentService, IMultiSelectionBroker multiSelectionBroker)
 		{
 			this.textView = textView;
+			this.indentService = indentService;
+			this.multiSelectionBroker = multiSelectionBroker;
+			multiSelectionBroker.MultiSelectionSessionChanged += MultiSelectionSessionChanged;
+		}
+
+		void MultiSelectionSessionChanged (object sender, EventArgs e)
+		{
+			Console.WriteLine ("CHANGED");
+
+			/*
+			var span = textView.Selection.VirtualSelectedSpans.First ();
+			position = new CaretPosition (span.End);
+			*/
 		}
 
 		#region ITextCaret Members
 
 		public bool IsHidden {
-			get {
-				throw new NotImplementedException ();
-			}
-			set {
-				throw new NotImplementedException ();
-			}
+			get => throw new NotImplementedException ();
+			set => throw new NotImplementedException ();
 		}
 
-		public double Bottom {
-			get { throw new NotImplementedException (); }
-		}
+		public double Bottom => throw new NotImplementedException ();
 
-		public void CapturePreferredYCoordinate ()
+		public void CapturePreferredYCoordinate () => throw new NotImplementedException ();
+
+		public ITextViewLine ContainingTextViewLine
+			=> textView.GetTextViewLineContainingBufferPosition (Position.BufferPosition);
+
+		public void EnsureVisible () 
 		{
-			throw new NotImplementedException ();
+			// no-op, we don't do scrolling
 		}
 
-		public ITextViewLine ContainingTextViewLine {
-			get { throw new NotImplementedException (); }
-		}
+		public double Height => throw new NotImplementedException ();
 
-		public void EnsureVisible ()
-		{
-			throw new NotImplementedException ();
-		}
-
-		public double Height {
-			get { throw new NotImplementedException (); }
-		}
-
-		public double Left {
-			get { throw new NotImplementedException (); }
-		}
-
-		public CaretPosition MoveTo (VirtualSnapshotPoint position)
-		{
-			throw new NotImplementedException ();
-		}
-
-		public CaretPosition MoveTo (VirtualSnapshotPoint position, PositionAffinity caretAffinity)
-		{
-			throw new NotImplementedException ();
-		}
-
-		public CaretPosition MoveTo (VirtualSnapshotPoint position, PositionAffinity caretAffinity, bool captureHorizontalPosition)
-		{
-			throw new NotImplementedException ();
-		}
+		public double Left => throw new NotImplementedException ();
 
 		public CaretPosition MoveTo (SnapshotPoint bufferPosition)
-		{
-			throw new NotImplementedException ();
-		}
+			=> MoveTo (bufferPosition, PositionAffinity.Successor);
 
 		public CaretPosition MoveTo (SnapshotPoint bufferPosition, PositionAffinity caretAffinity)
-		{
-			throw new NotImplementedException ();
-		}
-
-		public CaretPosition MoveTo (ITextViewLine textLine, double xCoordinate)
-		{
-			throw new NotImplementedException ();
-		}
+			=> MoveTo (bufferPosition, caretAffinity, true);
 
 		public CaretPosition MoveTo (SnapshotPoint bufferPosition, PositionAffinity caretAffinity, bool captureHorizontalPosition)
-		{
-			throw new NotImplementedException ();
-		}
+			=> MoveTo (new VirtualSnapshotPoint (bufferPosition), caretAffinity, captureHorizontalPosition);
+
+		public CaretPosition MoveTo (ITextViewLine textLine)
+			=> MoveTo (textLine, 0.0, true);
+
+		public CaretPosition MoveTo (ITextViewLine textLine, double xCoordinate)
+			=> MoveTo (textLine, xCoordinate, true);
 
 		public CaretPosition MoveTo (ITextViewLine textLine, double xCoordinate, bool captureHorizontalPosition)
 		{
-			throw new NotImplementedException ();
+			var xCoord = textLine.MapXCoordinate (textView, 0.0, indentService, false);
+			var pos = textLine.GetInsertionBufferPositionFromXCoordinate (xCoord);
+			return MoveTo (pos, PositionAffinity.Successor, captureHorizontalPosition);
 		}
 
-		public CaretPosition MoveTo (ITextViewLine textLine)
+		public CaretPosition MoveTo (VirtualSnapshotPoint position)
+			=> MoveTo (position, PositionAffinity.Successor, true);
+
+		public CaretPosition MoveTo (VirtualSnapshotPoint position, PositionAffinity caretAffinity)
+			=> MoveTo (position, caretAffinity, true);
+
+		public CaretPosition MoveTo (VirtualSnapshotPoint position, PositionAffinity caretAffinity, bool captureHorizontalPosition)
 		{
-			throw new NotImplementedException ();
+			using (multiSelectionBroker.BeginBatchOperation ()) {
+				multiSelectionBroker.ClearSecondarySelections ();
+				var selection = new Selection (position, caretAffinity);
+				multiSelectionBroker.AddSelection (selection);
+				multiSelectionBroker.TrySetAsPrimarySelection (selection);
+			}
+			return Position;
 		}
 
 		public CaretPosition MoveToNextCaretPosition ()
@@ -106,11 +100,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 			throw new NotImplementedException ();
 		}
 
-		public bool OverwriteMode {
-			get {
-				throw new NotImplementedException ();
-			}
-		}
+		public bool OverwriteMode { get; set; }
 
 		public bool InVirtualSpace {
 			get {
@@ -118,9 +108,14 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 			}
 		}
 
-		public CaretPosition Position {
-			get { return (new CaretPosition (new VirtualSnapshotPoint (this.textView.TextSnapshot, 0), new MockMappingPoint (this.textView.TextBuffer, 0), PositionAffinity.Predecessor)); }
-		}
+		public CaretPosition Position => new CaretPosition (
+				multiSelectionBroker.PrimarySelection.InsertionPoint,
+				textView.BufferGraph.CreateMappingPoint (
+					multiSelectionBroker.PrimarySelection.InsertionPoint.Position,
+					PointTrackingMode.Positive
+				),
+				multiSelectionBroker.PrimarySelection.InsertionPointAffinity
+			);
 
 		public event EventHandler<CaretPositionChangedEventArgs> PositionChanged {
 			add { }

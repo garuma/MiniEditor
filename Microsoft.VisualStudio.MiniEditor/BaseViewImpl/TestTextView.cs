@@ -1,36 +1,24 @@
 using System;
-using Microsoft.VisualStudio.Text;
-using Microsoft.VisualStudio.Text.Editor;
-using Microsoft.VisualStudio.Text.Editor.Implementation;
 using Microsoft.VisualStudio.Text.Formatting;
 using Microsoft.VisualStudio.Text.Projection;
-using Microsoft.VisualStudio.Utilities;
 using Microsoft.VisualStudio.Text.Utilities;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+using Microsoft.VisualStudio.Utilities;
 
 namespace Microsoft.VisualStudio.Text.Editor.Implementation
 {
 	class TestTextView : ITextView3
 	{
+		//we pretend each char is a simple square
+		const double charSize = 20;
+
+		//enormous viewport makes things simpler
+		const double viewportSize = 20000.0;
+
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		#region Private Data Members
 
-		private EventHandler<TextViewLayoutChangedEventArgs> _layoutChanged;
-		private EventHandler<MouseHoverEventArgs> _mouseHover;
-		private EventHandler _viewportWidthChanged;
-		private EventHandler _viewportLeftChanged;
-		private EventHandler _viewportHeightChanged;
-		private bool _isClosed;
 
 		private ITextBuffer _textBuffer;
-		private IMultiSelectionBroker _multiSelectionBroker;
-		private ITextViewLineCollection _textViewLines;
-		private ITextViewModel _textViewModel;
-		private ITextDataModel _textDataModel;
-
 		readonly TextViewFactoryService _factoryService;
 
 		#endregion
@@ -40,7 +28,6 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 		{
 			_textBuffer = textBuffer;
 			_factoryService = factoryService;
-			Selection = new MockTextSelection(this);
 
 			var listeners = UIExtensionSelector.SelectMatchingExtensions (
 				_factoryService.TextViewCreationListeners, _textBuffer.ContentType, null, Roles);
@@ -48,49 +35,54 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 				listener.Value.TextViewCreated (this);
 			}
 
-			_textDataModel = new VacuousTextDataModel (textBuffer);
-			_textViewModel = new VacuousTextViewModel (_textDataModel);
-			_multiSelectionBroker = _factoryService.MultiSelectionBrokerFactory.CreateBroker (this);
+			TextDataModel = new VacuousTextDataModel (textBuffer);
+			TextViewModel = new VacuousTextViewModel (TextDataModel);
+			MultiSelectionBroker = _factoryService.MultiSelectionBrokerFactory.CreateBroker (this);
 
-			_textViewLines = new TestTextViewLineCollection (this);
+			CreateLines ();
+
+			Selection = new MockTextSelection (this, MultiSelectionBroker);
+			Caret = new MockTextCaret (this, _factoryService.SmartIndentationService, MultiSelectionBroker);
 		}
 		#endregion
+
+		void CreateLines ()
+		{
+			ITextSnapshot snapshot = TextBuffer.CurrentSnapshot;
+			int topLine = 0;
+			int bottomLine = Math.Min (snapshot.LineCount - 1, 20);
+
+			var lines = new TestTextViewLineCollection (this);
+			for (int i = topLine; i <= bottomLine; i++) {
+				var l = snapshot.GetLineFromLineNumber (i);
+				double top = charSize * i;
+				var line = new TestTextViewLine (this, l, 0, top, l.Length * charSize, top + LineHeight);
+				lines.Add (line);
+			}
+
+			TextViewLines = lines;
+		}
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		#region ITextView Members
 
-		public event EventHandler<TextViewLayoutChangedEventArgs> LayoutChanged {
-			add { _layoutChanged += value; }
-			remove { _layoutChanged -= value; }
-		}
+		public event EventHandler<TextViewLayoutChangedEventArgs> LayoutChanged;
 
-		public event EventHandler<MouseHoverEventArgs> MouseHover {
-			add { _mouseHover += value; }
-			remove { _mouseHover -= value; }
-		}
+		public event EventHandler<MouseHoverEventArgs> MouseHover;
 
-		public event EventHandler ViewportWidthChanged {
-			add { _viewportWidthChanged += value; }
-			remove { _viewportWidthChanged -= value; }
-		}
+		public event EventHandler ViewportWidthChanged;
 
-		public event EventHandler ViewportLeftChanged {
-			add { _viewportLeftChanged += value; }
-			remove { _viewportLeftChanged -= value; }
-		}
+		public event EventHandler ViewportLeftChanged;
 
-		public event EventHandler ViewportHeightChanged {
-			add { _viewportHeightChanged += value; }
-			remove { _viewportHeightChanged -= value; }
-		}
+		public event EventHandler ViewportHeightChanged;
 
-		public ITextCaret Caret => new MockTextCaret (this);
+		public ITextCaret Caret { get; }
 
 		public void DisplayTextLineContainingBufferPosition (SnapshotPoint position, double verticalDistance, ViewRelativePosition relativeTo) => throw new NotImplementedException ();
 
 		public void DisplayTextLineContainingBufferPosition (SnapshotPoint position, double verticalDistance, ViewRelativePosition relativeTo, double? width, double? height) => throw new NotImplementedException ();
 
-		public SnapshotSpan GetTextElementSpan (SnapshotPoint position) => throw new NotImplementedException ();
+		public SnapshotSpan GetTextElementSpan (SnapshotPoint position) => TextViewLines.GetTextElementSpan (position);
 
 		public bool InLayout => throw new NotImplementedException ();
 
@@ -105,9 +97,9 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 			}
 		}
 
-		public ITextViewLineCollection TextViewLines => _textViewLines;
+        public ITextViewLineCollection TextViewLines { get; private set; }
 
-		public ITextSelection Selection { get; }
+        public ITextSelection Selection { get; }
 
 		public int TabSize {
 			get {
@@ -133,34 +125,30 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 
 		public ITextSnapshot VisualSnapshot => TextBuffer.CurrentSnapshot;
 
-		public ITextViewModel TextViewModel => _textViewModel;
+        public ITextViewModel TextViewModel { get; }
 
-		public ITextDataModel TextDataModel => _textDataModel;
+        public ITextDataModel TextDataModel { get; }
 
-		public IBufferGraph BufferGraph => _factoryService.BufferGraphFactoryService.CreateBufferGraph (_textBuffer);
+        public IBufferGraph BufferGraph => _factoryService.BufferGraphFactoryService.CreateBufferGraph (_textBuffer);
 
 		public IViewScroller ViewScroller => throw new NotImplementedException ();
 
-		public double ViewportBottom => throw new NotImplementedException ();
+		public double ViewportBottom => ViewportTop + ViewportHeight;
 
-		public double ViewportHeight => throw new NotImplementedException ();
+		public double ViewportHeight => viewportSize;
 
-		public double LineHeight => throw new NotImplementedException ();
+		public double LineHeight => charSize;
 
 		public double ViewportLeft {
-			get {
-				throw new NotImplementedException ();
-			}
-			set {
-				throw new NotImplementedException ();
-			}
+			get => 0.0;
+			set => throw new NotImplementedException ();
 		}
 
-		public double ViewportRight => throw new NotImplementedException ();
+		public double ViewportRight => ViewportLeft + ViewportWidth;
 
-		public double ViewportTop => throw new NotImplementedException ();
+		public double ViewportTop => 0.0;
 
-		public double ViewportWidth => throw new NotImplementedException ();
+		public double ViewportWidth => viewportSize;
 
 		public double ZoomLevel {
 			get { throw new NotImplementedException (); }
@@ -169,7 +157,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 
 		public void Close ()
 		{
-			_isClosed = true;
+			IsClosed = true;
 			Closed?.Invoke (this, EventArgs.Empty);
 		}
 
@@ -177,9 +165,9 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 		public event EventHandler IsKeyboardFocusedChanged;
 		public event EventHandler MaxTextRightCoordinateChanged;
 
-		public bool IsClosed => _isClosed;
+        public bool IsClosed { get; private set; }
 
-		public IEditorOptions Options => throw new NotImplementedException ();
+        public IEditorOptions Options => throw new NotImplementedException ();
 
 		public bool IsMouseOverViewOrAdornments => throw new NotImplementedException ();
 
@@ -199,7 +187,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 		#endregion
 
 		public ITextViewLine GetTextViewLineContainingBufferPosition (SnapshotPoint bufferPosition)
-			=> _textViewLines.GetTextViewLineContainingBufferPosition (bufferPosition);
+			=> TextViewLines.GetTextViewLineContainingBufferPosition (bufferPosition);
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		#region IPropertyOwner Members
@@ -212,14 +200,14 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 
 		public bool InOuterLayout => throw new NotImplementedException ();
 
-		public IMultiSelectionBroker MultiSelectionBroker => _multiSelectionBroker;
+        public IMultiSelectionBroker MultiSelectionBroker { get; }
 
-		#endregion
+        #endregion
 
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		#region Internal Surface
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        #region Internal Surface
 
-		internal void FireClosed () => this.Closed?.Invoke (this, EventArgs.Empty);
+        internal void FireClosed () => this.Closed?.Invoke (this, EventArgs.Empty);
 
 		public IXPlatAdornmentLayer GetXPlatAdornmentLayer (string name)
 		{
@@ -247,56 +235,5 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 		}
 
 		#endregion
-	}
-
-	class TestTextViewLineCollection : List<ITextViewLine>, ITextViewLineCollection
-	{
-		private TestTextView testTextView;
-
-		public TestTextViewLineCollection (TestTextView testTextView)
-		{
-			this.testTextView = testTextView;
-		}
-
-		public ITextViewLine FirstVisibleLine => this.FirstOrDefault ();
-
-		public ITextViewLine LastVisibleLine => this.LastOrDefault ();
-
-		public SnapshotSpan FormattedSpan => throw new NotImplementedException ();
-
-		public bool IsValid => true;
-
-		public bool ContainsBufferPosition (SnapshotPoint bufferPosition)
-			=> false;
-
-		public TextBounds GetCharacterBounds (SnapshotPoint bufferPosition)
-		{
-			throw new NotImplementedException ();
-		}
-
-		public int GetIndexOfTextLine (ITextViewLine textLine)
-			=> -1;
-
-		public Collection<TextBounds> GetNormalizedTextBounds (SnapshotSpan bufferSpan)
-		{
-			throw new NotImplementedException ();
-		}
-
-		public SnapshotSpan GetTextElementSpan (SnapshotPoint bufferPosition)
-		{
-			throw new NotImplementedException ();
-		}
-
-		public ITextViewLine GetTextViewLineContainingBufferPosition (SnapshotPoint bufferPosition)
-			=> null;
-
-		public ITextViewLine GetTextViewLineContainingYCoordinate (double y)
-			=> null;
-
-		public Collection<ITextViewLine> GetTextViewLinesIntersectingSpan (SnapshotSpan bufferSpan)
-			=> null;
-
-		public bool IntersectsBufferSpan (SnapshotSpan bufferSpan)
-			=> false;
 	}
 }
