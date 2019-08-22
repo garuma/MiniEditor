@@ -41,6 +41,7 @@
     <Compile Include="$(BaseEditorPath)Core\Impl\ContentType\ContentTypeImpl.cs" />
     <Compile Include="$(BaseEditorPath)Core\Impl\ContentType\ContentTypeRegistryServiceImpl.cs" />
     <Compile Include="$(BaseEditorPath)Core\Impl\ContentType\IFileToContentTypeMetadata.cs" />
+    <Compile Include="$(BaseEditorPath)Core\Impl\Features\*.cs" />
     <Compile Include="$(BaseEditorPath)Language\Def\Language\QuickInfo\IAsyncQuickInfoSession2.cs" />
     <Compile Include="$(BaseEditorPath)Language\Def\Language\QuickInfo\Legacy\ILegacyQuickInfoBrokerSupport.cs" />
     <Compile Include="$(BaseEditorPath)Language\Def\Language\QuickInfo\Legacy\ILegacyQuickInfoMetadata.cs" />
