@@ -4,11 +4,11 @@ using Microsoft.VisualStudio.Text.Formatting;
 
 namespace Microsoft.VisualStudio.Text.Editor.Implementation
 {
-	class MockTextSelection : ITextSelection
+	class TestTextSelection : ITextSelection
     {
 		readonly IMultiSelectionBroker multiSelectionBroker;
 
-		public MockTextSelection (ITextView textView, IMultiSelectionBroker multiSelectionBroker)
+		public TestTextSelection (ITextView textView, IMultiSelectionBroker multiSelectionBroker)
         {
             TextView = textView;
 			this.multiSelectionBroker = multiSelectionBroker;

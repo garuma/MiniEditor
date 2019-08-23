@@ -4,13 +4,13 @@ using Microsoft.VisualStudio.Text.MultiSelection;
 
 namespace Microsoft.VisualStudio.Text.Editor.Implementation
 {
-	internal class MockTextCaret : ITextCaret
+	internal class TestTextCaret : ITextCaret
 	{
 		readonly ITextView textView;
 		readonly ISmartIndentationService indentService;
 		readonly IMultiSelectionBroker multiSelectionBroker;
 
-		public MockTextCaret (ITextView textView, ISmartIndentationService indentService, IMultiSelectionBroker multiSelectionBroker)
+		public TestTextCaret (ITextView textView, ISmartIndentationService indentService, IMultiSelectionBroker multiSelectionBroker)
 		{
 			this.textView = textView;
 			this.indentService = indentService;

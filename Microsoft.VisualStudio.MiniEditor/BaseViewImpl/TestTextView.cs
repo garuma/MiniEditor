@@ -46,8 +46,8 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 
 			CreateLines ();
 
-			Selection = new MockTextSelection (this, MultiSelectionBroker);
-			Caret = new MockTextCaret (this, _factoryService.SmartIndentationService, MultiSelectionBroker);
+			Selection = new TestTextSelection (this, MultiSelectionBroker);
+			Caret = new TestTextCaret (this, _factoryService.SmartIndentationService, MultiSelectionBroker);
 
 			textBuffer.ChangedLowPriority += TextBufferChangedLowPriority;
 		}
