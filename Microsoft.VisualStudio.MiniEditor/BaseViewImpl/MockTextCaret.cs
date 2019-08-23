@@ -15,17 +15,6 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 			this.textView = textView;
 			this.indentService = indentService;
 			this.multiSelectionBroker = multiSelectionBroker;
-			multiSelectionBroker.MultiSelectionSessionChanged += MultiSelectionSessionChanged;
-		}
-
-		void MultiSelectionSessionChanged (object sender, EventArgs e)
-		{
-			Console.WriteLine ("CHANGED");
-
-			/*
-			var span = textView.Selection.VirtualSelectedSpans.First ();
-			position = new CaretPosition (span.End);
-			*/
 		}
 
 		#region ITextCaret Members
@@ -81,12 +70,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 
 		public CaretPosition MoveTo (VirtualSnapshotPoint position, PositionAffinity caretAffinity, bool captureHorizontalPosition)
 		{
-			using (multiSelectionBroker.BeginBatchOperation ()) {
-				multiSelectionBroker.ClearSecondarySelections ();
-				var selection = new Selection (position, caretAffinity);
-				multiSelectionBroker.AddSelection (selection);
-				multiSelectionBroker.TrySetAsPrimarySelection (selection);
-			}
+			multiSelectionBroker.SetSelection (new Selection (position, caretAffinity));
 			return Position;
 		}
 

@@ -50,7 +50,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 		public event EventHandler SelectionChanged;
 
 		public void Clear ()
-			=> Select (new Selection (multiSelectionBroker.PrimarySelection.InsertionPoint));
+			=> multiSelectionBroker.SetSelection (new Selection (multiSelectionBroker.PrimarySelection.InsertionPoint));
 
         public VirtualSnapshotSpan? GetSelectionOnTextViewLine(ITextViewLine line)
         {
@@ -58,17 +58,9 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
         }
 
 		public void Select (SnapshotSpan selectionSpan, bool isReversed)
-			=> Select (new Selection (selectionSpan, isReversed));
+			=> multiSelectionBroker.SetSelection (new Selection (selectionSpan, isReversed));
 
 		public void Select (VirtualSnapshotPoint anchorPoint, VirtualSnapshotPoint activePoint)
-			=> Select (new Selection (anchorPoint, activePoint));
-
-		void Select (Selection selection)
-		{
-			using (multiSelectionBroker.BeginBatchOperation ()) {
-				multiSelectionBroker.ClearSecondarySelections ();
-				multiSelectionBroker.TrySetAsPrimarySelection (selection);
-			}
-		}
+			=> multiSelectionBroker.SetSelection (new Selection (anchorPoint, activePoint));
     }
 }

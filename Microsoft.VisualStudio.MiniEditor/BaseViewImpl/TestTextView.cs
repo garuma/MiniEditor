@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.Text.Formatting;
 using Microsoft.VisualStudio.Text.Projection;
 using Microsoft.VisualStudio.Text.Utilities;
@@ -35,6 +36,10 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 				listener.Value.TextViewCreated (this);
 			}
 
+			Options = factoryService.EditorOptionsFactory.CreateOptions (true);
+			factoryService.EditorOptionsFactory.TryBindToScope (Options, this);
+
+			TextSnapshot = textBuffer.CurrentSnapshot;
 			TextDataModel = new VacuousTextDataModel (textBuffer);
 			TextViewModel = new VacuousTextViewModel (TextDataModel);
 			MultiSelectionBroker = _factoryService.MultiSelectionBrokerFactory.CreateBroker (this);
@@ -43,8 +48,37 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 
 			Selection = new MockTextSelection (this, MultiSelectionBroker);
 			Caret = new MockTextCaret (this, _factoryService.SmartIndentationService, MultiSelectionBroker);
+
+			textBuffer.ChangedLowPriority += TextBufferChangedLowPriority;
 		}
+
 		#endregion
+
+		void TextBufferChangedLowPriority (object sender, TextContentChangedEventArgs e)
+		{
+			PerformLayout ();
+		}
+
+		// this is EXTREMELY naive
+		void PerformLayout ()
+		{
+			if (TextBuffer.CurrentSnapshot == TextSnapshot) {
+				return;
+			}
+
+			CreateLines ();
+			TextSnapshot = TextBuffer.CurrentSnapshot;
+
+			// this never changes
+			var viewState = new ViewState (this, ViewportWidth, ViewportHeight);
+
+			// HACK we don't track which lines changed, so broadcast all of them
+			IList<ITextViewLine> translatedLines = TextViewLines;
+			IList<ITextViewLine> newOrReformattedLines = TextViewLines;
+
+			// the MultiCaretBroker needs this in order to update its position
+			this?.LayoutChanged (this, new TextViewLayoutChangedEventArgs (viewState, viewState, newOrReformattedLines, translatedLines));
+		}
 
 		void CreateLines ()
 		{
@@ -97,9 +131,9 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 			}
 		}
 
-        public ITextViewLineCollection TextViewLines { get; private set; }
+		public ITextViewLineCollection TextViewLines { get; private set; }
 
-        public ITextSelection Selection { get; }
+		public ITextSelection Selection { get; }
 
 		public int TabSize {
 			get {
@@ -121,9 +155,10 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 
 		public ITextBuffer TextBuffer => (_textBuffer);
 
-		public ITextSnapshot TextSnapshot => TextBuffer.CurrentSnapshot;
+		public ITextSnapshot TextSnapshot { get; private set; }
 
-		public ITextSnapshot VisualSnapshot => TextBuffer.CurrentSnapshot;
+		// we have a vacuous model so this is the same
+		public ITextSnapshot VisualSnapshot => TextSnapshot;
 
         public ITextViewModel TextViewModel { get; }
 
@@ -167,7 +202,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 
         public bool IsClosed { get; private set; }
 
-        public IEditorOptions Options => throw new NotImplementedException ();
+        public IEditorOptions Options { get; }
 
 		public bool IsMouseOverViewOrAdornments => throw new NotImplementedException ();
 
