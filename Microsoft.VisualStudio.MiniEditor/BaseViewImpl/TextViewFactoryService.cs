@@ -15,6 +15,15 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 		[Import]
 		public IBufferGraphFactoryService BufferGraphFactoryService { get; set; }
 
+		[Import]
+		public IMultiSelectionBrokerFactory MultiSelectionBrokerFactory { get; set; }
+
+		[Import]
+		public ISmartIndentationService SmartIndentationService { get; set; }
+
+		[Import]
+		public IEditorOptionsFactoryService2 EditorOptionsFactory { get; set; }
+
 		[ImportMany]
 		public List<Lazy<ITextViewCreationListener, IDeferrableContentTypeAndTextViewRoleMetadata>> TextViewCreationListeners { get; set; }
 
