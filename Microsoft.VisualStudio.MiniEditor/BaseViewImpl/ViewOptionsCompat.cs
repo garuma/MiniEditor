@@ -6,6 +6,9 @@ using System;
 using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Utilities;
 
+
+#pragma warning disable CS0436 // Type conflicts with imported type
+
 namespace Microsoft.VisualStudio.Text.Editor.OptionsExtensionMethods
 {
 	/// <summary>
@@ -1335,3 +1338,5 @@ namespace Microsoft.VisualStudio.Text.Editor
 		public override EditorOptionKey<bool> Key => DefaultTextViewOptions.ShouldMoveCaretOnSelectAllId;
 	}
 }
+
+#pragma warning restore CS0436 // Type conflicts with imported type

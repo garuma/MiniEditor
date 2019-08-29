@@ -8,7 +8,7 @@
     <SignAssembly>true</SignAssembly>
     <PublicSign>true</PublicSign>
     <AssemblyOriginatorKeyFile>..\public.snk</AssemblyOriginatorKeyFile>
-    <VSEditorNugetVersion>16.1.89</VSEditorNugetVersion>
+    <VSEditorNugetVersion>16.3.178</VSEditorNugetVersion>
   </PropertyGroup>
   <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -32,6 +32,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Text.UI" Version="$(VSEditorNugetVersion)" />
     <PackageReference Include="Microsoft.VisualStudio.Language" Version="$(VSEditorNugetVersion)" />
     <PackageReference Include="Microsoft.VisualStudio.Composition" Version="16.1.8" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading" Version="16.3.13" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="2.2.33" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +43,7 @@
     <Compile Include="$(BaseEditorPath)Core\Impl\ContentType\ContentTypeRegistryServiceImpl.cs" />
     <Compile Include="$(BaseEditorPath)Core\Impl\ContentType\IFileToContentTypeMetadata.cs" />
     <Compile Include="$(BaseEditorPath)Core\Impl\Features\*.cs" />
+    <Compile Include="$(BaseEditorPath)Core\Def\BaseUtility\IGuardedOperationsInternal.cs" />
     <Compile Include="$(BaseEditorPath)Language\Def\Language\QuickInfo\IAsyncQuickInfoSession2.cs" />
     <Compile Include="$(BaseEditorPath)Language\Def\Language\QuickInfo\Legacy\ILegacyQuickInfoBrokerSupport.cs" />
     <Compile Include="$(BaseEditorPath)Language\Def\Language\QuickInfo\Legacy\ILegacyQuickInfoMetadata.cs" />
@@ -57,7 +59,6 @@
     <Compile Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\CompletionModel.cs" />
     <Compile Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\CompletionSourceConnectionResult.cs" />
     <Compile Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\CompletionTelemetry.cs" />
-    <Compile Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\CompletionUtilities.cs" />
     <Compile Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\DefaultCompletionItemManager.cs" />
     <Compile Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\IModelComputationCallbackHandler.cs" />
     <Compile Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\ImportBucket.cs" />
@@ -67,7 +68,7 @@
     <Compile Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\SuggestionModeCompletionItemSource.cs" />
     <Compile Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\TextUndoTransactionThatRollsBackProperly.cs" />
     <Compile Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\UndoUtilities.cs" />
-    <Compile Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\UseAsyncCompletionOptionDefinition.cs" />
+    <Compile Include="$(BaseEditorPath)Language\Impl\Language\AsyncCompletion\DeferredBlockingOperation.cs" />
     <Compile Include="$(BaseEditorPath)Language\Impl\Language\QuickInfo\AsyncQuickInfoBroker.cs" />
     <Compile Include="$(BaseEditorPath)Language\Impl\Language\QuickInfo\AsyncQuickInfoPresentationSession.cs" />
     <Compile Include="$(BaseEditorPath)Language\Impl\Language\QuickInfo\AsyncQuickInfoSession.Legacy.cs" />
@@ -97,12 +98,14 @@
     <Compile Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\TelemetryResult.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\TelemetrySeverity.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\Internal\TextUI\*.cs" />
-    <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Adornments\*.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Adornments\IXplat*.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Adornments\XPlat*.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Adornments\ToolTipService\IToolTipPresenter2.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Editor\ITextView3.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Formatting\ITextViewLineSource.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Operations\IEditorOperations4.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Utilities\IStatusBarService.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Commanding\Commands\ToggleCompletionListFilterCommandArgs.cs" />
     <Compile Include="$(BaseEditorPath)Text\Impl\ClassificationAggregator\ClassifierAggregator.cs" />
     <Compile Include="$(BaseEditorPath)Text\Impl\ClassificationAggregator\ClassifierAggregatorService.cs" />
     <Compile Include="$(BaseEditorPath)Text\Impl\ClassificationAggregator\ClassifierTagger.cs" />
@@ -278,12 +281,6 @@
     <Compile Include="$(BaseEditorPath)Text\Util\TextDataUtil\MappingHelper.cs" />
     <Compile Include="$(BaseEditorPath)Text\Util\TextDataUtil\MappingPointSnapshot.cs" />
     <Compile Include="$(BaseEditorPath)Text\Util\TextDataUtil\MappingSpanSnapshot.cs" />
-    <Compile Include="$(BaseEditorPath)Text\Util\TextDataUtil\PooledObjects\ArrayBuilder.Enumerator.cs" />
-    <Compile Include="$(BaseEditorPath)Text\Util\TextDataUtil\PooledObjects\ArrayBuilder.cs" />
-    <Compile Include="$(BaseEditorPath)Text\Util\TextDataUtil\PooledObjects\ObjectPool`1.cs" />
-    <Compile Include="$(BaseEditorPath)Text\Util\TextDataUtil\PooledObjects\PooledDictionary.cs" />
-    <Compile Include="$(BaseEditorPath)Text\Util\TextDataUtil\PooledObjects\PooledHashSet.cs" />
-    <Compile Include="$(BaseEditorPath)Text\Util\TextDataUtil\PooledObjects\PooledStringBuilder.cs" />
     <Compile Include="$(BaseEditorPath)Text\Util\TextDataUtil\ProjectionSpanDiffer.cs" />
     <Compile Include="$(BaseEditorPath)Text\Util\TextDataUtil\SnapshotTracker.cs" />
     <Compile Include="$(BaseEditorPath)Text\Util\TextDataUtil\StableContentTypeComparer.cs" />
