@@ -57,6 +57,15 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
                 if (l.ContainsBufferPosition(bufferPosition))
                     return l;
             }
+
+            // ContainsBufferPosition includes the start position of the line but not the
+            // position after the last char on the line, so we have to explicitly handle
+            // the case where the caret is after the last char in the buffer
+            var last = this.LastOrDefault ();
+            if (last != null && bufferPosition == last.EndIncludingLineBreak) {
+                return last;
+            }
+
             return null;
         }
 
