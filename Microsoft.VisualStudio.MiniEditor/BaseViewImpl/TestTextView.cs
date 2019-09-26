@@ -30,12 +30,6 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 			_textBuffer = textBuffer;
 			_factoryService = factoryService;
 
-			var listeners = UIExtensionSelector.SelectMatchingExtensions (
-				_factoryService.TextViewCreationListeners, _textBuffer.ContentType, null, Roles);
-			foreach (var listener in listeners) {
-				listener.Value.TextViewCreated (this);
-			}
-
 			Options = factoryService.EditorOptionsFactory.CreateOptions (true);
 			factoryService.EditorOptionsFactory.TryBindToScope (Options, this);
 
@@ -50,6 +44,12 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 			Caret = new TestTextCaret (this, _factoryService.SmartIndentationService, MultiSelectionBroker);
 
 			textBuffer.ChangedLowPriority += TextBufferChangedLowPriority;
+
+			var listeners = UIExtensionSelector.SelectMatchingExtensions (
+				_factoryService.TextViewCreationListeners, _textBuffer.ContentType, null, Roles);
+			foreach (var listener in listeners) {
+				listener.Value.TextViewCreated (this);
+			}
 		}
 
 		#endregion
