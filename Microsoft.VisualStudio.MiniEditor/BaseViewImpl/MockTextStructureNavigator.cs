@@ -30,10 +30,9 @@ namespace Microsoft.VisualStudio.MiniEditor.BaseViewImpl
 			throw new NotImplementedException ();
 		}
 
+		// this is just enough to get some expand selection tests working
 		public SnapshotSpan GetSpanOfEnclosing (SnapshotSpan activeSpan)
-		{
-			throw new NotImplementedException ();
-		}
+			=> new SnapshotSpan (activeSpan.Snapshot, 0, activeSpan.Snapshot.Length);
 
 		public SnapshotSpan GetSpanOfFirstChild (SnapshotSpan activeSpan)
 		{
