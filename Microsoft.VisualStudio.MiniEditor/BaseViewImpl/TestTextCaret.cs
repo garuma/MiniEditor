@@ -15,6 +15,14 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 			this.textView = textView;
 			this.indentService = indentService;
 			this.multiSelectionBroker = multiSelectionBroker;
+			multiSelectionBroker.MultiSelectionSessionChanged += MultiSelectionSessionChanged;
+
+			var point = new SnapshotPoint (textView.TextBuffer.CurrentSnapshot, 0);
+			Position = new CaretPosition (
+				new VirtualSnapshotPoint (point),
+				textView.BufferGraph.CreateMappingPoint (point, PointTrackingMode.Positive),
+				PositionAffinity.Successor
+			);
 		}
 
 		#region ITextCaret Members
@@ -92,19 +100,37 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 			}
 		}
 
-		public CaretPosition Position => new CaretPosition (
-				multiSelectionBroker.PrimarySelection.InsertionPoint,
-				textView.BufferGraph.CreateMappingPoint (
-					multiSelectionBroker.PrimarySelection.InsertionPoint.Position,
-					PointTrackingMode.Positive
-				),
-				multiSelectionBroker.PrimarySelection.InsertionPointAffinity
-			);
+		public CaretPosition Position { get; private set; }
 
-		public event EventHandler<CaretPositionChangedEventArgs> PositionChanged {
-			add { }
-			remove { }
+		void MultiSelectionSessionChanged (object sender, EventArgs e)
+		{
+			Update ();
 		}
+
+		public void Update ()
+		{
+			var oldPosition = Position;
+
+			var snapshot = textView.TextBuffer.CurrentSnapshot;
+			bool snapshotChanged = snapshot != oldPosition.BufferPosition.Snapshot;
+			var translatedBrokerPos = multiSelectionBroker.PrimarySelection.InsertionPoint.TranslateTo (snapshot);
+			var posChanged = oldPosition.VirtualBufferPosition.TranslateTo (snapshot) != translatedBrokerPos;
+			var affinityChanged = multiSelectionBroker.PrimarySelection.InsertionPointAffinity != oldPosition.Affinity;
+
+			if (snapshotChanged || posChanged || affinityChanged) {
+				Position = new CaretPosition (
+					translatedBrokerPos,
+					textView.BufferGraph.CreateMappingPoint (translatedBrokerPos.Position, PointTrackingMode.Positive),
+					multiSelectionBroker.PrimarySelection.InsertionPointAffinity
+				);
+			}
+
+			if (posChanged) {
+				PositionChanged?.Invoke (this, new CaretPositionChangedEventArgs (this.textView, oldPosition, Position));
+			}
+		}
+
+		public event EventHandler<CaretPositionChangedEventArgs> PositionChanged;
 
 		public double PreferredYCoordinate {
 			get { throw new NotImplementedException (); }
