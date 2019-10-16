@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
@@ -8,7 +8,7 @@
     <SignAssembly>true</SignAssembly>
     <PublicSign>true</PublicSign>
     <AssemblyOriginatorKeyFile>..\public.snk</AssemblyOriginatorKeyFile>
-    <VSEditorNugetVersion>16.3.178</VSEditorNugetVersion>
+    <VSEditorNugetVersion>16.4.66</VSEditorNugetVersion>
   </PropertyGroup>
   <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -93,11 +93,11 @@
     <Compile Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\ITextSearchNavigator2.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\ITextUndoHistory2.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\ITypingTelemetrySession.cs" />
-    <Compile Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\TagAggregatorOptions2.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\TelemetryEventType.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\TelemetryResult.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\Internal\TextLogic\TelemetrySeverity.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\Internal\TextUI\*.cs" />
+    <Compile Remove="$(BaseEditorPath)Text\Def\Internal\TextUI\IBraceCompletionManager.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Adornments\IXplat*.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Adornments\XPlat*.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Adornments\ToolTipService\IToolTipPresenter2.cs" />
@@ -115,6 +115,21 @@
     <Compile Include="$(BaseEditorPath)Text\Impl\ClassificationAggregator\ProjectionWorkaround.cs" />
     <Compile Include="$(BaseEditorPath)Text\Impl\ClassificationType\ClassificationTypeImpl.cs" />
     <Compile Include="$(BaseEditorPath)Text\Impl\ClassificationType\ClassificationTypeRegistryService.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Impl\BraceCompletion\BraceCompletionAggregator.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Impl\BraceCompletion\BraceCompletionAggregatorFactory.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Impl\BraceCompletion\BraceCompletionCommandHandler.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Impl\BraceCompletion\BraceCompletionDefaultSession.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Impl\BraceCompletion\BraceCompletionEnabledOption.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Impl\BraceCompletion\BraceCompletionManager.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Impl\BraceCompletion\BraceCompletionManagerFactory.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Impl\BraceCompletion\BraceCompletionStack.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Impl\BraceCompletion\IBraceCompletionAdornmentService.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Impl\BraceCompletion\IBraceCompletionAdornmentServiceFactory.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Impl\BraceCompletion\IBraceCompletionAggregator.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Impl\BraceCompletion\IBraceCompletionAggregatorFactory.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Impl\BraceCompletion\IBraceCompletionMetadata.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Impl\BraceCompletion\IBraceCompletionStack.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Impl\BraceCompletion\PlainTextDefaults.cs" />
     <Compile Include="$(BaseEditorPath)Text\Impl\Commanding\CommandHandlerBucket.cs" />
     <Compile Include="$(BaseEditorPath)Text\Impl\Commanding\DefaultBufferResolver.cs" />
     <Compile Include="$(BaseEditorPath)Text\Impl\Commanding\EditorCommandHandlerServiceFactory.cs" />
@@ -366,6 +381,12 @@
       <LastGenOutput>vs-editor-api\src\Editor\Text\Impl\XPlat\MultiCaretImpl\Strings.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Microsoft.VisualStudio.Text.MultiSelection.Implementation</CustomToolNamespace>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(BaseEditorPath)Text\Impl\BraceCompletion\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LogicalName>Microsoft.VisualStudio.Text.BraceCompletion.Implementation.Strings.resources</LogicalName>
+      <LastGenOutput>vs-editor-api\src\Editor\Text\Impl\BraceCompletion\Strings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Microsoft.VisualStudio.Text.BraceCompletion.Implementation</CustomToolNamespace>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(BaseEditorPath)Core\Impl\ContentType\Strings.Designer.cs">
@@ -412,6 +433,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>vs-editor-api\src\Editor\Text\Impl\XPlat\MultiCaretImpl\Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="$(BaseEditorPath)Text\Impl\BraceCompletion\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>
