@@ -102,6 +102,8 @@
     <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Adornments\XPlat*.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Adornments\ToolTipService\IToolTipPresenter2.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Editor\ITextView3.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Editor\IViewSynchronizationManager.cs" />
+    <Compile Include="$(BaseEditorPath)Text\Def\TextUI\EditorOptions\InternalOptions.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Formatting\ITextViewLineSource.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Operations\IEditorOperations4.cs" />
     <Compile Include="$(BaseEditorPath)Text\Def\TextUI\Utilities\IStatusBarService.cs" />

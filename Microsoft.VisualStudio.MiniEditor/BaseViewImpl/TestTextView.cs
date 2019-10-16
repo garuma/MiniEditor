@@ -219,6 +219,8 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 		}
 
 		public void QueueSpaceReservationStackRefresh () => throw new NotImplementedException ();
+
+		public IViewSynchronizationManager SynchronizationManager { get; set; }
 		#endregion
 
 		public ITextViewLine GetTextViewLineContainingBufferPosition (SnapshotPoint bufferPosition)
