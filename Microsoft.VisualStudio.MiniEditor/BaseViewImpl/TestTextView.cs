@@ -9,6 +9,8 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 {
 	class TestTextView : ITextView3
 	{
+		TestTextCaret _caret;
+
 		//we pretend each char is a simple square
 		const double charSize = 20;
 
@@ -47,7 +49,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 			CreateLines ();
 
 			Selection = new TestTextSelection (this, MultiSelectionBroker);
-			Caret = new TestTextCaret (this, _factoryService.SmartIndentationService, MultiSelectionBroker);
+			_caret = new TestTextCaret (this, _factoryService.SmartIndentationService, MultiSelectionBroker);
 
 			textBuffer.ChangedLowPriority += TextBufferChangedLowPriority;
 		}
@@ -78,6 +80,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 
 			// the MultiCaretBroker needs this in order to update its position
 			this?.LayoutChanged (this, new TextViewLayoutChangedEventArgs (viewState, viewState, newOrReformattedLines, translatedLines));
+			_caret.Update ();
 		}
 
 		void CreateLines ()
@@ -110,7 +113,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 
 		public event EventHandler ViewportHeightChanged;
 
-		public ITextCaret Caret { get; }
+		public ITextCaret Caret => _caret;
 
 		public void DisplayTextLineContainingBufferPosition (SnapshotPoint position, double verticalDistance, ViewRelativePosition relativeTo) => throw new NotImplementedException ();
 

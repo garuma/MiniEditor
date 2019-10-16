@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.VisualStudio.Text.Formatting;
 using System.Collections.ObjectModel;
 
@@ -139,8 +139,8 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
             throw new NotImplementedException();
         }
 
-        //HACK just return the line as we don't currently split it up into elements
-        public SnapshotSpan GetTextElementSpan(SnapshotPoint bufferPosition) => Extent;
+        //FIXME surrogate chars, elision, etc
+        public SnapshotSpan GetTextElementSpan(SnapshotPoint bufferPosition) => new SnapshotSpan (bufferPosition, 1);
 
         public VirtualSnapshotPoint GetVirtualBufferPositionFromXCoordinate(double xCoordinate)
         {
