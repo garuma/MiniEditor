@@ -169,7 +169,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 
         public IBufferGraph BufferGraph => _factoryService.BufferGraphFactoryService.CreateBufferGraph (_textBuffer);
 
-		public IViewScroller ViewScroller => throw new NotImplementedException ();
+		public IViewScroller ViewScroller => TestViewScroller.Instance;
 
 		public double ViewportBottom => ViewportTop + ViewportHeight;
 
