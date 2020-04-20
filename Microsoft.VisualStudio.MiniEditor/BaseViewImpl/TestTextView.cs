@@ -87,7 +87,7 @@ namespace Microsoft.VisualStudio.Text.Editor.Implementation
 		{
 			ITextSnapshot snapshot = TextBuffer.CurrentSnapshot;
 			int topLine = 0;
-			int bottomLine = Math.Min (snapshot.LineCount - 1, 20);
+			int bottomLine = snapshot.LineCount - 1;
 
 			var lines = new TestTextViewLineCollection (this);
 			for (int i = topLine; i <= bottomLine; i++) {
