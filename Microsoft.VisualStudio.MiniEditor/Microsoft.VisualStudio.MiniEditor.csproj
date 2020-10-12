@@ -8,7 +8,7 @@
     <SignAssembly>true</SignAssembly>
     <PublicSign>true</PublicSign>
     <AssemblyOriginatorKeyFile>..\public.snk</AssemblyOriginatorKeyFile>
-    <VSEditorNugetVersion>16.4.280</VSEditorNugetVersion>
+    <VSEditorNugetVersion>16.6.255</VSEditorNugetVersion>
   </PropertyGroup>
   <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -32,7 +32,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Text.UI" Version="$(VSEditorNugetVersion)" />
     <PackageReference Include="Microsoft.VisualStudio.Language" Version="$(VSEditorNugetVersion)" />
     <PackageReference Include="Microsoft.VisualStudio.Composition" Version="16.4.11" />
-    <PackageReference Include="Microsoft.VisualStudio.Threading" Version="16.4.16" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading" Version="16.7.56" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="2.2.33" PrivateAssets="all" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
